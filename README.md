@@ -131,20 +131,19 @@ yarn dev:client    # Terminal 2 (frontend on :3000)
 
 To host a game for friends on the same WiFi network:
 
-1. **Start the server** (using any method above)
-
-2. **Find your IP address**:
-   ```bash
-   # Mac/Linux
-   ifconfig | grep "inet " | grep -v 127.0.0.1
+1. **Start the server** (using any method above)  
+   The server will automatically display both local and network URLs:
+   ```
+   🎮 Temple Game Server is running!
+   📍 Local:    http://localhost:8080
+   🌐 Network:  http://192.168.1.123:8080
    
-   # Windows
-   ipconfig | findstr "IPv4"
+   💡 Share the Network URL with others on your WiFi to play together!
    ```
 
-3. **Share the URL**: Give everyone `http://[your-ip]:8080` (Docker) or `http://[your-ip]:3000` (development)
+2. **Share the Network URL** with everyone on your WiFi
 
-4. **Create a game** and share the game code with others
+3. **Create a game** and share the game code with others
 
 ### Mobile Support
 
