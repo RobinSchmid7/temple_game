@@ -33,10 +33,7 @@ Perfect for hosting private game sessions, LAN parties, or when you want to run 
 
 ## Quick Start
 
-### Option 1: Use the Live Version (Easiest)
-Just visit [**https://tempel.rcr.dev/**](https://tempel.rcr.dev/) - no setup required!
-
-### Option 2: Docker Deployment (Recommended for Local Hosting)
+### Option 1: Docker Deployment (Recommended for Local Hosting)
 ```bash
 # Clone this repository
 git clone https://github.com/RobinSchmid7/temple_game
@@ -49,7 +46,7 @@ docker-compose up --build
 # Others can join at http://[your-ip]:8080
 ```
 
-### Option 3: Development Setup
+### Option 2: Development Setup
 ```bash
 # Install Node.js 16.x (using nvm)
 nvm install 16 && nvm use 16
