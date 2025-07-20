@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+  tempel-game:
+    build:
+      context: .
+      dockerfile: server.Dockerfile
+    ports:
+      - "8080:8080"
+    environment:
+      - NODE_ENV=production
+    restart: unless-stopped
