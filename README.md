@@ -39,8 +39,8 @@ Just visit [**https://tempel.rcr.dev/**](https://tempel.rcr.dev/) - no setup req
 ### Option 2: Docker Deployment (Recommended for Local Hosting)
 ```bash
 # Clone this repository
-git clone <this-repository-url>
-cd temple_server
+git clone https://github.com/RobinSchmid7/temple_game
+cd temple_game
 
 # Start with Docker Compose
 docker-compose up --build
