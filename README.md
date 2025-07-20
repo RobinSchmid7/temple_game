@@ -23,13 +23,16 @@ It is for **3-10 players**, and games take **as little as 10 minutes**.
 This repository is based on the original [tempel-des-schreckens](https://github.com/richardcrng/tempel-des-schreckens) by [richardcrng](https://github.com/richardcrng), with additional build configurations and setup instructions to easily **host the game locally** for friends and family.
 
 **Key additions:**
-- ✅ **Docker Compose setup** for one-command deployment
+- ✅ **Easy setup scripts** - `./setup.sh` and `./start-game.sh` for one-command deployment
+- ✅ **Automatic IP detection** - shows your network IP for easy sharing
 - ✅ **Local network hosting** instructions  
 - ✅ **Comprehensive installation guides** for all skill levels
 - ✅ **Mobile-friendly local hosting**
 - ✅ **Troubleshooting documentation**
 
-Perfect for hosting private game sessions, LAN parties, or when you want to run your own instance!
+Perfect for hosting private game sessions, LAN parties, or when you want to run your own instance! 
+
+**🚀 Super easy setup**: Just run `./setup.sh` once, then `./start-game.sh` to play!
 
 ## Quick Start
 
@@ -39,11 +42,14 @@ Perfect for hosting private game sessions, LAN parties, or when you want to run 
 git clone https://github.com/RobinSchmid7/temple_game
 cd temple_game
 
-# Start with Docker Compose
-docker-compose up --build
+# Run setup (makes scripts executable and checks requirements)
+./setup.sh
 
-# Access at http://localhost:8080
-# Others can join at http://[your-ip]:8080
+# Start the game server (automatically shows your IP)
+./start-game.sh
+
+# Stop the game server when done
+./stop-game.sh
 ```
 
 ### Option 2: Development Setup
@@ -100,9 +106,16 @@ yarn dev:client    # Terminal 2 (frontend on :3000)
 
 **Prerequisites**: Docker Desktop installed and running
 
-1. **Single Container Deployment**:
+1. **Recommended Method** (using setup scripts):
    ```bash
-   # Build and run
+   ./setup.sh        # One-time setup
+   ./start-game.sh    # Start with automatic IP detection
+   ./stop-game.sh     # Stop when done
+   ```
+
+2. **Alternative: Manual Docker Commands**:
+   ```bash
+   # Build and run manually
    docker-compose up --build
    
    # Or run in background
@@ -111,16 +124,7 @@ yarn dev:client    # Terminal 2 (frontend on :3000)
    # Access at http://localhost:8080
    ```
 
-2. **Manual Docker Build**:
-   ```bash
-   # Build the image
-   docker build -f server.Dockerfile -t tempel-game .
-   
-   # Run the container
-   docker run -p 8080:8080 tempel-game
-   ```
-
-3. **Production Build (without Docker)**:
+3. **Alternative: Production Build (without Docker)**:
    ```bash
    yarn build
    yarn start:server:compiled
@@ -131,14 +135,18 @@ yarn dev:client    # Terminal 2 (frontend on :3000)
 
 To host a game for friends on the same WiFi network:
 
-1. **Start the server** (using any method above)  
-   The server will automatically display both local and network URLs:
+1. **Use the start script** - it automatically detects and displays your IP:
+   ```bash
+   ./start-game.sh
+   ```
+   
+   You'll see output like:
    ```
    🎮 Temple Game Server is running!
    📍 Local:    http://localhost:8080
    🌐 Network:  http://192.168.1.123:8080
    
-   💡 Share the Network URL with others on your WiFi to play together!
+   💡 Share http://192.168.1.123:8080 with others on your WiFi to play together!
    ```
 
 2. **Share the Network URL** with everyone on your WiFi
@@ -173,12 +181,12 @@ yarn test                # Run all tests
 yarn typecheck           # Run TypeScript type checking
 ```
 
-### Docker
+### Game Management
 ```bash
-docker-compose up --build    # Build and start containers
-docker-compose down          # Stop containers
-docker-compose logs -f       # View logs
-docker-compose ps           # Check container status
+./setup.sh                  # One-time setup (makes scripts executable)
+./start-game.sh              # Start the game server (shows your IP)
+./stop-game.sh               # Stop the game server
+docker-compose logs -f       # View server logs (if needed)
 ```
 
 ## Game Context
@@ -205,7 +213,7 @@ yarn install
 ### Network Issues
 - **Can't connect from phones**: Ensure all devices on same WiFi
 - **Firewall blocking**: Temporarily disable firewall or allow Node.js connections
-- **Wrong IP**: Use `hostname -I` or check router admin panel
+- **Wrong IP**: The `./start-game.sh` script automatically detects your IP, but you can manually check with `ifconfig en0` (Mac) or `hostname -I` (Linux)
 
 ### TypeScript Build Errors
 If you encounter lodash type errors during Docker build, update `server/tsconfig.json`:

@@ -5,8 +5,7 @@ services:
     build:
       context: .
       dockerfile: server.Dockerfile
-    ports:
-      - "8080:8080"
+    network_mode: host
     environment:
       - NODE_ENV=production
       - PORT=8080
